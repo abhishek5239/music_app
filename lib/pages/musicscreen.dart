@@ -47,7 +47,7 @@ class _musicscreenState extends State<musicscreen> {
           appBar: AppBar(
             // backgroundColor: Colors.transparent,
             leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
+              icon: Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
                 player.stop();

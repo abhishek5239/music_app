@@ -37,32 +37,30 @@ class _like_pageState extends State<like_page> {
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             children: [
-              SizedBox(
-                height: 55,
-                width: double.infinity,
-                child: TextField(
-                  cursorColor: Colors.grey,
-                  decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide.none),
-                      hintText: 'Search music,Artist,Podcast',
-                      hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                      prefixIcon: Container(
-                        padding: EdgeInsets.only(bottom: 5),
-                        child: Icon(
-                          Icons.search,
-                          size: 28,
-                          color: Colors.grey,
+              TextField(
+
+                cursorColor: Colors.grey,
+                decoration: InputDecoration(
+
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none),
+                    hintText: 'Search music,Artist,Podcast',
+                    hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 18,
                         ),
-                        width: 18,
-                      )),
-                ),
+                    prefixIcon: Container(
+                      padding: EdgeInsets.only(bottom: 5),
+                      child: Icon(
+                        Icons.search,
+                        size: 28,
+                        color: Colors.grey,
+                      ),
+                      width: 18,
+                    )),
               ),
               Expanded(
                   child: ListView(
@@ -86,6 +84,7 @@ class _like_pageState extends State<like_page> {
                         return Card(
                           elevation: 0,
                           child: ListTile(
+                            trailing:  Icon(Icons.more_vert),
                             title: Text("${search_list[index].songname}"),
                             subtitle: Text("${search_list[index].typeimg}"),
                             leading: Container(
