@@ -14,12 +14,7 @@ class _frontscreenState extends State<frontscreen> {
   final screens = [home_page(), like_page()];
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-          //WE ONLY NEED THIS MUCH
-          appBarTheme: AppBarTheme(backgroundColor: Color(0xFF0A0E21)),
-          scaffoldBackgroundColor: Color(0xFF0A0E21)),
-      home: Scaffold(
+    return  Scaffold(
         body: screens[curr_index],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: curr_index,
@@ -36,7 +31,7 @@ class _frontscreenState extends State<frontscreen> {
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           ],
         ),
-      ),
-    );
+      );
+
   }
 }

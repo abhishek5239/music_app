@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/pages/home_page.dart';
 import 'package:music_app/pages/musicscreen.dart';
+import 'package:music_app/pages/topsong_page.dart';
 import 'package:music_app/screens/Myotpscreen.dart';
 import 'package:music_app/screens/phnonelogin.dart';
 import 'package:music_app/screens/frontscreen.dart';
@@ -20,14 +22,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark().copyWith(
+        //WE ONLY NEED THIS MUCH
+          appBarTheme: AppBarTheme(backgroundColor: Color(0xFF0A0E21)),
+          scaffoldBackgroundColor: Color(0xFF0A0E21)),
       debugShowCheckedModeBanner: false,
-      initialRoute: 'frontscreen',
-      routes: {
-        'Mylogin': (context) => Mylogin(),
-        'otpscreen': (context) => myotp(),
-        'frontscreen': (context) => frontscreen(),
-        // 'musicscreen': (context) => musicscreen(),
-      },
+      //frontscreen
+      home: frontscreen(),
+      // initialRoute: 'topsongs',
+      // routes: {
+      //   'Mylogin': (context) => Mylogin(),
+      //   'otpscreen': (context) => myotp(),
+      //   'frontscreen': (context) => frontscreen(),
+      //   'topsongs':(context)=>TopSongs(),
+      //   // 'musicscreen': (context) => musicscreen(),
+      // },
       // home: Mylogin(),
     );
   }

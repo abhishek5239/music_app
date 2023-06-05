@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:music_app/pages/musicscreen.dart';
+import 'package:music_app/pages/topsong_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:music_app/pages/singer_page.dart';
+
+import '../Music/bestofroch.dart';
 
 class musicclass {
   final String? songimage;
@@ -13,11 +16,12 @@ class musicclass {
 }
 
 class musicclass_justforyou {
+  final String? singerposter;
   final String? songimage2;
   final String? songname2;
   final String? song_mp32;
 
-  musicclass_justforyou({this.songimage2, this.songname2, this.song_mp32});
+  musicclass_justforyou({this.songimage2, this.songname2, this.song_mp32,this.singerposter});
 }
 
 class home_page extends StatefulWidget {
@@ -77,15 +81,15 @@ class _home_pageState extends State<home_page> {
 
   List<musicclass_justforyou> list_singers = [
     musicclass_justforyou(
-        songimage2: 'assets/singer_atif.jpg', songname2: 'Atif Aslam'),
+        songimage2: 'assets/singer_atif.jpg', songname2: 'Atif Aslam',singerposter: 'assets/atif.png'),
     musicclass_justforyou(
-        songimage2: 'assets/singer_argit.png', songname2: 'Arjit Singh'),
+        songimage2: 'assets/singer_argit.png', songname2: 'Arjit Singh',singerposter: 'assets/arjit.png'),
     musicclass_justforyou(
-        songimage2: 'assets/singer_shawn.jpeg', songname2: 'Shawn Mendis'),
+        songimage2: 'assets/singer_shawn.jpeg', songname2: 'Shawn Mendis',singerposter: 'assets/shawn.png'),
     musicclass_justforyou(
-        songimage2: 'assets/singer_ed.jpg', songname2: 'Ed Sheeren'),
+        songimage2: 'assets/singer_ed.jpg', songname2: 'Ed Sheeren',singerposter: 'assets/ed.png'),
     musicclass_justforyou(
-        songimage2: 'assets/singer_para.jpeg', songname2: 'Paradox'),
+        songimage2: 'assets/singer_para.jpeg', songname2: 'Paradox',singerposter: 'assets/para.png'),
   ];
 
   int activepage = 0;
@@ -111,33 +115,54 @@ class _home_pageState extends State<home_page> {
               children: [
                 CarouselSlider(
                     items: [
-                      Container(
-                        margin: EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          image: DecorationImage(
-                            image: AssetImage('assets/c1.jpg'),
-                            fit: BoxFit.cover,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)
+                          =>TopSongs(songlist: bestofdance,num: 1,)
+                          ));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage('assets/bestofdance.jpg'),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          image: DecorationImage(
-                            image: AssetImage('assets/carousal2.jpeg'),
-                            fit: BoxFit.cover,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)
+                          =>TopSongs(songlist: bestofrock,num: 0,)
+                          ));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage('assets/topsongs.jpg'),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          image: DecorationImage(
-                            image: AssetImage('assets/carousal3.jpeg'),
-                            fit: BoxFit.cover,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)
+                          =>TopSongs(songlist: bestofedm,num: 2,)
+                          ));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage('assets/bestofedm.jpg'),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
@@ -215,7 +240,7 @@ class _home_pageState extends State<home_page> {
                       width: 10,
                     ),
                     itemBuilder: (context, index) => cont_playlist_justforyou(
-                      song_list2: list_music_justforyou[index],
+                      song_list2: list_music_justforyou[index]
                     ),
                   ),
                 ),
@@ -244,7 +269,7 @@ class _home_pageState extends State<home_page> {
                       width: 10,
                     ),
                     itemBuilder: (context, index) => cont_playlist_singer(
-                      song_list2: list_singers[index],
+                      song_list2: list_singers[index], number: index,
                     ),
                   ),
                 ),
@@ -259,6 +284,7 @@ class _home_pageState extends State<home_page> {
 
 class cont_playlist extends StatelessWidget {
   musicclass song_list = musicclass();
+
   cont_playlist({required this.song_list});
   @override
   Widget build(BuildContext context) {
@@ -267,7 +293,7 @@ class cont_playlist extends StatelessWidget {
       width: 150,
       decoration: BoxDecoration(
           // color: Colors.blueGrey,
-          border: Border.all(width: 1),
+          // border: Border.all(width: 1),
           borderRadius: BorderRadius.circular(2)),
       child: TextButton(
         onPressed: () {
@@ -275,6 +301,7 @@ class cont_playlist extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => musicscreen(
+
                         songimage: song_list.songimage,
                         songname: song_list.songname,
                         song_mp3: song_list.song_mp3,
@@ -301,6 +328,7 @@ class cont_playlist extends StatelessWidget {
 
 class cont_playlist_justforyou extends StatelessWidget {
   musicclass_justforyou song_list2 = musicclass_justforyou();
+
   cont_playlist_justforyou({required this.song_list2});
   @override
   Widget build(BuildContext context) {
@@ -309,14 +337,16 @@ class cont_playlist_justforyou extends StatelessWidget {
       width: 150,
       decoration: BoxDecoration(
           // color: Colors.blueGrey,
-          border: Border.all(width: 1),
+          // border: Border.all(width: 1),
           borderRadius: BorderRadius.circular(2)),
       child: TextButton(
         onPressed: () {
+          print(song_list2.song_mp32);
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => musicscreen(
+
                       songimage: song_list2.songimage2,
                       songname: song_list2.songname2,
                       song_mp3: song_list2.song_mp32)));
@@ -339,8 +369,9 @@ class cont_playlist_justforyou extends StatelessWidget {
 }
 
 class cont_playlist_singer extends StatelessWidget {
+  int number;
   musicclass_justforyou song_list2 = musicclass_justforyou();
-  cont_playlist_singer({required this.song_list2});
+  cont_playlist_singer({required this.song_list2,required this.number});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -354,8 +385,11 @@ class cont_playlist_singer extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => singerpage(
+
                                 singernme: song_list2.songname2,
-                                singerphoto: song_list2.songimage2,
+                                singerphoto: song_list2.singerposter, number: number,
+
+
                               )));
                 },
                 child: CircleAvatar(

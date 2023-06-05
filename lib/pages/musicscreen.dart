@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class musicscreen extends StatefulWidget {
+
   final String? songimage;
   final String? songname;
   final String? song_mp3;
@@ -18,6 +19,7 @@ class musicscreen extends StatefulWidget {
 }
 
 class _musicscreenState extends State<musicscreen> {
+
   final String? songimage;
   final String? songname;
   final String? song_mp3;
@@ -29,7 +31,7 @@ class _musicscreenState extends State<musicscreen> {
   final player = AudioPlayer();
   Duration? duration = Duration(seconds: 0);
   void initplayer() async {
-    await player.setSource(AssetSource('${song_mp3}'));
+    await player.setSource(AssetSource(song_mp3!));
     duration = await player.getDuration();
   }
 
@@ -58,6 +60,8 @@ class _musicscreenState extends State<musicscreen> {
           body: Stack(
             children: [
               Container(
+                height: 250,
+                width: 250,
                 constraints: BoxConstraints.expand(),
                 decoration: BoxDecoration(
                     image: DecorationImage(
